@@ -20,4 +20,9 @@ describe('Hello', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render hello text', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.textContent).toContain('Hello Angular');
+  });
 });

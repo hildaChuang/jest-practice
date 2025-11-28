@@ -5,7 +5,12 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './hello.html',
   styleUrl: './hello.scss',
+  standalone: true
 })
 export class Hello {
+  message = 'Hello Angular';
 
+  changeMessage() {
+    this.message = 'Clicked!';
+  }
 }

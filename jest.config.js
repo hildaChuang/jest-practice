@@ -4,10 +4,11 @@ module.exports = {
     testEnvironment: 'jsdom',
 
     transform: {
-        '^.+\\.(ts|mjs|js|html)$': [
+        '^.+\\.(ts|mjs|js)$': [
             'jest-preset-angular',
             {
-                tsconfig: 'tsconfig.spec.json'
+                tsconfig: 'tsconfig.spec.json',
+                stringifyContentPathRegex: '\\.(html|svg)$'
             }
         ],
     },

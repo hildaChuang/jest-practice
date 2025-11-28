@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { HelloService } from "../services/hello.service";
 
 @Component({
   selector: 'app-hello',
@@ -8,7 +9,12 @@ import { Component } from '@angular/core';
   standalone: true
 })
 export class Hello {
+  helloService = inject(HelloService);
   message = 'Hello Angular';
+
+  constructor() {
+    this.message = this.helloService.getName();
+  }
 
   changeMessage() {
     this.message = 'Clicked!';

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Hello } from './hello';
+import { HelloService } from "../services/hello.service";
 
 describe('Hello', () => {
   let component: Hello;
@@ -42,4 +43,41 @@ describe('Hello', () => {
     // Assert component state
     expect(component.message).toBe('Clicked!');
   });
+});
+
+describe('HelloComponent (Mock Service)', () => {
+  let component: Hello;
+  let fixture: ComponentFixture<Hello>;
+
+  // 用 jest.fn() 建 mock
+  const mockHelloService = {
+    getName: jest.fn().mockReturnValue('Mock Hilda')
+  };
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [Hello],
+      providers: [
+        {
+          provide: HelloService,
+          useValue: mockHelloService
+        },
+      ]
+    }).compileComponents();
+    // mockService = TestBed.inject(HelloService)
+
+    fixture = TestBed.createComponent(Hello);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should render mocked name', () => {
+    const html = fixture.nativeElement as HTMLElement;
+
+    // Assert DOM
+    expect(html.querySelector('h1')?.textContent).toBe('Mock Hilda');
+    // Assert component state
+    expect(component.message).toBe('Mock Hilda');
+  });
+
 });

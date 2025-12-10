@@ -1,9 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { HelloService } from "../services/hello.service";
+import { Child } from "../child/child";
 
 @Component({
   selector: 'app-hello',
-  imports: [],
+  imports: [
+    Child
+  ],
   templateUrl: './hello.html',
   styleUrl: './hello.scss',
   standalone: true
